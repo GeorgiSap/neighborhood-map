@@ -1,0 +1,30 @@
+.list-section {
+	width: 300px;
+	height: 100%;
+	position: absolute;
+	transform: translate(-300px, 0);
+	transition: transform 0.3s ease;
+	color: #ece5d7;
+	background-color: #2e3d49;
+	overflow-x: hidden;
+	overflow-y: auto;
+	z-index: 100;
+}
+
+.search-input {
+	width: 85%;
+	padding: 0.6em;
+	margin : 0.3em;
+	font-size: 1.25em;
+}
+
+.list-view {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.list-item {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1.2em;
+	margin: 1em 0.6em;
+}

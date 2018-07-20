@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ListView from './ListView.js';
 
 class App extends Component {
 
@@ -17,11 +18,11 @@ class App extends Component {
       {title: 'Carska Bistrica Residence', position : {lat : 42.2584737, lng : 23.5953557}}
     ]
   }
-  
+
   render() {
     return (
       <div className="App">
-
+        <ListView locations={this.state.locations} />
       </div>
     );
   }

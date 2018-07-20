@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import ListView from './ListView.js';
+import MainView from './MainView.js';
 
 class App extends Component {
 
@@ -23,6 +24,7 @@ class App extends Component {
     return (
       <div className="App">
         <ListView locations={this.state.locations} />
+        <MainView />
       </div>
     );
   }

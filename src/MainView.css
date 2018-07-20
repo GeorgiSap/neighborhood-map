@@ -1,0 +1,51 @@
+@font-face {
+	font-family: Lobster;
+	src: url(./fonts/lobster.otf);
+}
+
+main {
+	display: flex;	
+	flex-wrap: wrap;	
+	height: 100%;
+	overflow: hidden;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+	background-color: #ffefdb;
+	height: 3em;
+	width: 	100%;
+}
+
+.hamburger {
+	width: 2em;
+	height: 100%;
+	font-size: 1.5em;
+	background-color: inherit;
+	padding: 0;
+	border: none;
+	outline :none;
+}
+
+.header-heading {
+	height: 100%;
+	display: inline-block;
+	font-family: Lobster;
+	font-weight: normal;
+	font-size: 2em;
+	margin: 0;
+	text-align: center;
+	white-space: nowrap;
+	width: calc(100% - 1.5em);
+}
+
+.header-icon {
+	display: none;
+}
+
+@media screen and (min-width: 360px) {
+	.header-icon {
+		display: inline;
+	}
+} 

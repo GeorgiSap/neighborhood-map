@@ -1,4 +1,4 @@
-.list-section {
+aside {
 	width: 300px;
 	height: 100%;
 	position: absolute;
@@ -10,6 +10,15 @@
 	overflow-y: auto;
 	z-index: 100;
 }
+
+aside.open {
+	transform: translate(0, 0);
+}
+
+aside.alongside {
+	position: relative;
+	transition: none;
+}	
 
 .search-input {
 	width: 85%;

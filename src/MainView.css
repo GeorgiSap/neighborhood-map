@@ -4,12 +4,22 @@
 }
 
 main {
+	width: 100%;
 	display: flex;	
 	flex-wrap: wrap;	
-	height: 100%;
 	overflow: hidden;
+	height: 100%;
 	margin: 0;
 	padding: 0;
+}
+
+main.darken {
+	filter: brightness(85%);
+}
+
+main.alongside {
+	width: auto;
+	flex-grow: 1;
 }
 
 header {
@@ -44,8 +54,8 @@ header {
 	display: none;
 }
 
-@media screen and (min-width: 360px) {
+@media screen and (min-width: 360px) and (max-width: 599px), screen and (min-width: 640px) {
 	.header-icon {
 		display: inline;
 	}
-} 
+}

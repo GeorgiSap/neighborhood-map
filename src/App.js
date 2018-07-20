@@ -6,6 +6,9 @@ import MainView from './MainView.js';
 class App extends Component {
 
   state = {
+    isListViewAlongside : false,
+    isListViewOpened : false,
+    isMainDarkened : false,
     locations : [
       {title: 'Musala Peak', position : {lat : 42.179243, lng : 23.5852432}},
       {title: 'Rila Monastery', position : {lat : 42.1333838, lng : 23.3401215}},
@@ -20,11 +23,78 @@ class App extends Component {
     ]
   }
 
+  onHamburgerClick = () => {
+    console.log('Clicked hamburger...')
+    if (this.state.isListViewAlongside) {
+        this.setState({
+          isListViewAlongside: false,
+          isListViewOpened: false
+        })
+    } else {
+      if (window.innerWidth >= 600) {
+        this.setState({
+          isListViewAlongside: true,
+          isListViewOpened: true
+        }) 
+      } else {
+        this.setState({
+          isListViewOpened: true,
+          isMainDarkened: true
+        })  
+      }
+    }
+  }
+
+  onMainClick = (event) => {
+    if (!this.state.isListViewAlongside) {
+      if (this.state.isListViewOpened) {
+        event.stopPropagation();
+        this.setState({
+          isListViewOpened: false,
+          isMainDarkened: false
+        });
+      }
+    }
+  }
+
+  componentDidMount() {
+    let isListViewAlongside = window.innerWidth >= 600
+    this.setState({
+        isListViewAlongside: isListViewAlongside,
+        isListViewOpened: isListViewAlongside
+    });
+
+    window.addEventListener('resize', () => {
+        let isListViewAlongside = window.innerWidth >= 600
+        this.setState({
+            isListViewAlongside: isListViewAlongside,
+            isListViewOpened: isListViewAlongside,
+            isMainDarkened: false
+        });
+    });
+  }
+
   render() {
+    let className = "App"
+    if (this.state.isListViewAlongside) {
+      className += ' alongside'
+    }
+
     return (
-      <div className="App">
-        <ListView locations={this.state.locations} />
-        <MainView />
+      <div className={className} >
+       
+        <ListView 
+          locations={this.state.locations}
+          isListViewAlongside={this.state.isListViewAlongside}
+          isListViewOpened={this.state.isListViewOpened} />
+     
+        <MainView
+          isListViewAlongside={this.state.isListViewAlongside}
+          isListViewOpened={this.state.isListViewOpened} 
+          isMainDarkened={this.state.isMainDarkened} 
+          onHamburgerClick={this.onHamburgerClick}
+          onMainClick={this.onMainClick} />
+
       </div>
     );
   }

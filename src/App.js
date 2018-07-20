@@ -89,6 +89,7 @@ class App extends Component {
           isListViewOpened={this.state.isListViewOpened} />
      
         <MainView
+          locations={this.state.locations}
           isListViewAlongside={this.state.isListViewAlongside}
           isListViewOpened={this.state.isListViewOpened} 
           isMainDarkened={this.state.isMainDarkened} 

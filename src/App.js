@@ -24,7 +24,6 @@ class App extends Component {
   }
 
   onHamburgerClick = () => {
-    console.log('Clicked hamburger...')
     if (this.state.isListViewAlongside) {
         this.setState({
           isListViewAlongside: false,

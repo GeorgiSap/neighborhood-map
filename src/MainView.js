@@ -14,7 +14,7 @@ class MainView extends Component {
 		return (
 			<main className={mainClassName} onClickCapture={this.props.onMainClick} >
 				<header>
-					<button className="hamburger" onClick={this.props.onHamburgerClick}>☰</button>
+					<button className="hamburger" onClickCapture={this.props.onHamburgerClick}>☰</button>
 					<h1 className="header-heading"><span className="header-icon">⛰</span> Rila Mountain Sites</h1>
 				</header>
 			    <Map

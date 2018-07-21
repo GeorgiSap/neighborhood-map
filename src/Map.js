@@ -3,6 +3,14 @@ import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "reac
 
 class Map extends Component {
 
+	state = {
+		selectedLocation: null
+	}
+
+	openInfoWindow = (event, location) => {
+		this.setState({selectedLocation : location})
+	}
+
 	render() {
 		return (
 	      	<GoogleMap
@@ -21,7 +29,15 @@ class Map extends Component {
 	  				key={index}
 	  				title={location.title}
 	  				position={location.position}
-	  			/>
+	  				onClick={event => this.openInfoWindow(event, location)}
+	  			>
+	  				{this.state.selectedLocation === location &&
+		  				<InfoWindow>
+		  					<h3>{location.title}</h3>
+		  				</InfoWindow>
+	  				}
+
+	  			</Marker>
 			))}
 
 	  		</GoogleMap>

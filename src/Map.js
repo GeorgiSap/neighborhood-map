@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
-import ReactStreetview from 'react-streetview';
+import StreetView from './StreetView.js';
 
 class Map extends Component {
 
 	state = {
-		selectedLocation: null
+		location: null,
+		status: 'OK'
 	}
 
 	openInfoWindow = (event, location) => {
-		this.setState({selectedLocation : location})
+		this.setState({location, status : 'OK'})
+	}
+
+	onStatusChanged = (status) => {
+		this.setState({status})
 	}
 
 	componentDidMount () {
@@ -41,24 +46,28 @@ class Map extends Component {
 	  				position={location.position}
 	  				onClick={event => this.openInfoWindow(event, location)}
 	  			>
-	  				{this.state.selectedLocation === location &&
+	  				{this.state.location === location &&
 		  				<InfoWindow>
 	  						<div>
 			  					<h3>
 			  						{location.title}
 			  						{location.elevation ? ' (' + location.elevation + 'm)' : ''}
 			  					</h3>
-			  					<div style={{
-		                      		width: '268px',
-		                      		height: '268px',}} >
-		   							<ReactStreetview 
-						                apiKey={'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'}
-						                streetViewPanoramaOptions={{
-						                  position: location.position,
-						                  pov: {heading: 100, pitch: 0},
-						                  zoom: 1
-						                }} />
-			                	</div>
+			  					{this.state.status === 'OK' ?
+				  					<div style={{
+			                      		width: '268px',
+			                      		height: '268px',}} >
+			   						
+			   							<StreetView 
+							                onStatusChanged ={this.onStatusChanged}
+							                apiKey={'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'}
+							                streetViewPanoramaOptions={{
+							                  position: location.position,
+							                  pov: {heading: 100, pitch: 0},
+							                  zoom: 1
+							                }} />
+				                	</div>
+			                	: <h4><i>(No street view available)</i></h4>}
 		                	</div>
 		  				</InfoWindow>
 	  				}

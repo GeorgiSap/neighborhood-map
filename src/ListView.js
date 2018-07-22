@@ -44,16 +44,18 @@ class ListView extends Component {
 					 	value={this.state.query}
 					 	onChange={event => this.updateQuery(event.target.value)} />
 			 	</div>
-				<ul className="list-view">
-					{showingLocations.map((location, index) => (
-						<li className="list-item" key={index}>
-							<a onClick={() => this.props.openInfoWindow(location)} >
-								{location.title} 
-								{location.elevation ? ' (' + location.elevation + 'm)' : ''}
-							</a>
-						</li>
-					))}
-				</ul>
+				<div role="listbox">
+					<ul className="list-view">
+						{showingLocations.map((location, index) => (
+							<li className="list-item" key={index} role="option">
+								<a className="list-item-link" tabindex="0" onClick={() => this.props.openInfoWindow(location)} >
+									{location.title} 
+									{location.elevation ? ' (' + location.elevation + 'm)' : ''}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
 			</aside>
 		)
 	}

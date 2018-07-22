@@ -56,21 +56,67 @@ class App extends Component {
     }
   }
 
-  componentDidMount() {
+  setViewStateOnMount = () => {
     let isListViewAlongside = window.innerWidth >= 600
-    this.setState({
+      this.setState({
         isListViewAlongside: isListViewAlongside,
         isListViewOpened: isListViewAlongside
-    });
+    })
+  }
 
+  setViewStateOnResize = () => {
     window.addEventListener('resize', () => {
-        let isListViewAlongside = window.innerWidth >= 600
-        this.setState({
-            isListViewAlongside: isListViewAlongside,
-            isListViewOpened: isListViewAlongside,
-            isMainDarkened: false
-        });
-    });
+      let isListViewAlongside = window.innerWidth >= 600
+      this.setState({
+        isListViewAlongside: isListViewAlongside,
+        isListViewOpened: isListViewAlongside,
+        isMainDarkened: false
+      })
+    })
+  }
+
+  buildLocationsParam = () => {
+    let param = '';
+    this.state.locations.forEach((location, index) => {
+      param += location.position.lat + ',' + location.position.lng
+      if (index < this.state.locations.length - 1) {
+        param += '|';
+      }
+    })
+    return param;
+  }
+
+  buildRequestURL = () => {
+    let url = new URL("https://maps.googleapis.com/maps/api/elevation/json"),
+    params = {
+      locations: this.buildLocationsParam(), 
+      key: 'AIzaSyCOIb8tce725I3evjOt185ooz0A4UgsK1s'
+    }
+    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
+    return url;
+  }
+
+  fetchElevationData = () => {
+    fetch(this.buildRequestURL())
+      .then(response => response.json())
+      .then(data => {
+        if (data.results) {
+          this.setState(prevState => ({
+            locations : prevState.locations.map((location, index) => {
+              if (data.results[index] && data.results[index].elevation)
+                location.elevation = Math.round(data.results[index].elevation)
+              return location;
+            })
+          }))
+        }
+      })
+      .catch(error => console.log('Unable to fetch elevation data'))
+  }
+
+  componentDidMount() {
+    this.setViewStateOnMount()
+    this.setViewStateOnResize()
+    this.fetchElevationData()
   }
 
   render() {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ListView.css';
 import escapeRegExp from 'escape-string-regexp';
+import sortBy from 'sort-by';
 
 class ListView extends Component {
 
@@ -21,6 +22,8 @@ class ListView extends Component {
 		} else {
 			showingLocations = this.props.locations
 		}
+
+		showingLocations.sort(sortBy('title'))
 
 		let asideClassList;
 		if (this.props.isListViewOpened) {

@@ -39,6 +39,10 @@ header {
 	z-index: 1;
 }
 
+.hidden {
+	display: none;
+}
+
 .header-heading {
 	height: 100%;
 	display: inline-block;

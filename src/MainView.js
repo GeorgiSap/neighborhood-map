@@ -6,15 +6,21 @@ class MainView extends Component {
 
 	render() {
 		let mainClassName;
+		let hamburgerClassList="hamburger"
 		if (this.props.isListViewAlongside) 
 			mainClassName = 'alongside'
-		if (this.props.isMainDarkened) 
+		if (this.props.isMainDarkened) {
 			mainClassName = 'darken'
+			hamburgerClassList += ' hidden'
+		}
 
 		return (
 			<main className={mainClassName} onClickCapture={this.props.onMainClick} >
 				<header>
-					<button className="hamburger" onClickCapture={this.props.onHamburgerClick}>☰</button>
+					<button className={hamburgerClassList}
+							aria-label="menu" 
+							onClickCapture={this.props.onHamburgerClick}>☰
+					</button>
 					<h1 className="header-heading"><span className="header-icon">⛰</span> Rila Mountain Sites</h1>
 				</header>
 			    <Map

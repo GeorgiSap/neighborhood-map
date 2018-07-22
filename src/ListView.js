@@ -16,7 +16,10 @@ class ListView extends Component {
 				<input className="search-input" type="text" placeholder="Search..."/>
 				<ul className="list-view">
 					{this.props.locations.map((location, index) => (
-						<li className="list-item" key={index}>{location.title}</li>
+						<li className="list-item" key={index}>
+							{location.title} 
+							{location.elevation ? ' (' + location.elevation + 'm)' : ''}
+						</li>
 					))}
 				</ul>
 			</aside>

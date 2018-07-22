@@ -33,7 +33,10 @@ class Map extends Component {
 	  			>
 	  				{this.state.selectedLocation === location &&
 		  				<InfoWindow>
-		  					<h3>{location.title}</h3>
+		  					<h3>
+		  						{location.title}
+		  						{location.elevation ? ' (' + location.elevation + 'm)' : ''}
+		  					</h3>
 		  				</InfoWindow>
 	  				}
 

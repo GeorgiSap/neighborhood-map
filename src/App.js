@@ -115,6 +115,15 @@ class App extends Component {
   }
 
   openInfoWindow = (location) => {
+    if (!this.state.isListViewAlongside) {
+      if (this.state.isListViewOpened) {
+        this.setState({
+          isListViewOpened: false,
+          isMainDarkened: false
+        })
+      }
+    }
+
     this.setState({selectedLocation: location})
   }
 

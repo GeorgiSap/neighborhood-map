@@ -36,6 +36,7 @@ header {
 	padding: 0;
 	border: none;
 	outline :none;
+	z-index: 1;
 }
 
 .header-heading {

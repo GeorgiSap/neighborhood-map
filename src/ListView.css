@@ -8,7 +8,7 @@ aside {
 	background-color: #2e3d49;
 	overflow-x: hidden;
 	overflow-y: auto;
-	z-index: 100;
+	z-index: 2;
 }
 
 aside.open {

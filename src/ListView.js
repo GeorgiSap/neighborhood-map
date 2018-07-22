@@ -17,8 +17,10 @@ class ListView extends Component {
 				<ul className="list-view">
 					{this.props.locations.map((location, index) => (
 						<li className="list-item" key={index}>
-							{location.title} 
-							{location.elevation ? ' (' + location.elevation + 'm)' : ''}
+							<a onClick={() => this.props.openInfoWindow(location)} >
+								{location.title} 
+								{location.elevation ? ' (' + location.elevation + 'm)' : ''}
+							</a>
 						</li>
 					))}
 				</ul>

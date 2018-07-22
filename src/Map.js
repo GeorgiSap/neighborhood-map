@@ -5,12 +5,12 @@ import StreetView from './StreetView.js';
 class Map extends Component {
 
 	state = {
-		location: null,
 		status: 'OK'
 	}
 
-	openInfoWindow = (event, location) => {
-		this.setState({location, status : 'OK'})
+	openInfoWindow = (location) => {
+		this.setState({status : 'OK'})
+		this.props.openInfoWindow(location)
 	}
 
 	onStatusChanged = (status) => {
@@ -44,9 +44,9 @@ class Map extends Component {
 	  				key={index}
 	  				title={location.title}
 	  				position={location.position}
-	  				onClick={event => this.openInfoWindow(event, location)}
+	  				onClick={() => this.openInfoWindow(location)}
 	  			>
-	  				{this.state.location === location &&
+	  				{this.props.selectedLocation === location &&
 		  				<InfoWindow>
 	  						<div>
 			  					<h3>

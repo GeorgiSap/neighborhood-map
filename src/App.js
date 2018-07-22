@@ -20,7 +20,8 @@ class App extends Component {
       {title: 'Waterfall Kostenets', position : {lat : 42.2485196, lng : 23.8048843}},
       {title: 'Markudjik Ski Center', position : {lat : 42.2157817, lng : 23.5756325}},
       {title: 'Carska Bistrica Residence', position : {lat : 42.2584737, lng : 23.5953557}}
-    ]
+    ],
+    selectedLocation : false
   }
 
   onHamburgerClick = () => {
@@ -113,6 +114,10 @@ class App extends Component {
       .catch(error => console.log('Unable to fetch elevation data'))
   }
 
+  openInfoWindow = (location) => {
+    this.setState({selectedLocation: location})
+  }
+
   componentDidMount() {
     this.setViewStateOnMount()
     this.setViewStateOnResize()
@@ -131,7 +136,8 @@ class App extends Component {
         <ListView 
           locations={this.state.locations}
           isListViewAlongside={this.state.isListViewAlongside}
-          isListViewOpened={this.state.isListViewOpened} />
+          isListViewOpened={this.state.isListViewOpened}
+          openInfoWindow={this.openInfoWindow} />
      
         <MainView
           locations={this.state.locations}
@@ -139,7 +145,9 @@ class App extends Component {
           isListViewOpened={this.state.isListViewOpened} 
           isMainDarkened={this.state.isMainDarkened} 
           onHamburgerClick={this.onHamburgerClick}
-          onMainClick={this.onMainClick} />
+          openInfoWindow={this.openInfoWindow} 
+          onMainClick={this.onMainClick}
+          selectedLocation={this.state.selectedLocation} />
 
       </div>
     );

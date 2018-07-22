@@ -11,9 +11,18 @@ class Map extends Component {
 		this.setState({selectedLocation : location})
 	}
 
+	componentDidMount () {
+		const bounds = new window.google.maps.LatLngBounds()
+		this.props.locations.forEach((location) => {
+			bounds.extend(location.position)
+		})
+		this.refs.map.fitBounds(bounds)
+	}
+
 	render() {
 		return (
 	      	<GoogleMap
+	      		ref='map'
 		        defaultZoom={11} 
 			    defaultCenter={{
 			      lat: 42.133322,

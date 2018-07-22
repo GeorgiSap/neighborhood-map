@@ -21,7 +21,7 @@ aside.alongside {
 }	
 
 .search-input {
-	width: 85%;
+	width: calc(100% - 0.6em);
 	padding: 0.6em;
 	margin : 0.3em;
 	font-size: 1.25em;

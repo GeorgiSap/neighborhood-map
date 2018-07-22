@@ -34,12 +34,16 @@ class ListView extends Component {
 
 		return (
 			<aside className={asideClassList}>
-				<input 
-				 className="search-input"
-				 type="text" 
-				 placeholder="Search..."
-				 value={this.state.query}
-				 onChange={event => this.updateQuery(event.target.value) } />
+				<div className="search-box"
+					 role="search">
+					<input 
+					 	type="search"
+					 	aria-label="search text" 
+					 	className="search-input"
+					 	placeholder="Search location..."
+					 	value={this.state.query}
+					 	onChange={event => this.updateQuery(event.target.value)} />
+			 	</div>
 				<ul className="list-view">
 					{showingLocations.map((location, index) => (
 						<li className="list-item" key={index}>

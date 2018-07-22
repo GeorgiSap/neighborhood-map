@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
+import ReactStreetview from 'react-streetview';
 
 class Map extends Component {
 
@@ -42,10 +43,23 @@ class Map extends Component {
 	  			>
 	  				{this.state.selectedLocation === location &&
 		  				<InfoWindow>
-		  					<h3>
-		  						{location.title}
-		  						{location.elevation ? ' (' + location.elevation + 'm)' : ''}
-		  					</h3>
+	  						<div>
+			  					<h3>
+			  						{location.title}
+			  						{location.elevation ? ' (' + location.elevation + 'm)' : ''}
+			  					</h3>
+			  					<div style={{
+		                      		width: '268px',
+		                      		height: '268px',}} >
+		   							<ReactStreetview 
+						                apiKey={'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'}
+						                streetViewPanoramaOptions={{
+						                  position: location.position,
+						                  pov: {heading: 100, pitch: 0},
+						                  zoom: 1
+						                }} />
+			                	</div>
+		                	</div>
 		  				</InfoWindow>
 	  				}
 

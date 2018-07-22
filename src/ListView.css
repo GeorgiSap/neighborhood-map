@@ -9,10 +9,12 @@ aside {
 	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: 2;
+	display: none;
 }
 
 aside.open {
 	transform: translate(0, 0);
+	display: block;
 }
 
 aside.alongside {

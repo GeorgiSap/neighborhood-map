@@ -13,6 +13,12 @@ class ListView extends Component {
 		this.setState({query})
 	}	
 
+	onKeyPress = (event, location) => {
+		if (event.key === 'Enter') {
+			this.props.openInfoWindow(location)
+		}
+	}
+
 	componentDidUpdate() {
 		this.refs.search.focus()
 	}
@@ -51,7 +57,10 @@ class ListView extends Component {
 				<ul className="list-view">
 					{showingLocations.map((location, index) => (
 						<li className="list-item" key={index} >
-							<a className="list-item-link" tabIndex="0" onClick={() => this.props.openInfoWindow(location)} >
+							<a className="list-item-link" 
+							   tabIndex="0"
+							   onKeyPress={(event) => this.onKeyPress(event, location)}
+							   onClick={() => this.props.openInfoWindow(location)} >
 								{location.title} 
 								{location.elevation ? ' (' + location.elevation + 'm)' : ''}
 							</a>

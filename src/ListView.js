@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import './ListView.css';
-import escapeRegExp from 'escape-string-regexp';
-import sortBy from 'sort-by';
+import React, { Component } from 'react'
+import './ListView.css'
+import escapeRegExp from 'escape-string-regexp'
+import sortBy from 'sort-by'
 
 class ListView extends Component {
 
@@ -15,7 +15,7 @@ class ListView extends Component {
 
 	onKeyPress = (event, location) => {
 		if (event.key === 'Enter') {
-			this.props.openInfoWindow(location)
+			this.props.onInfoWindowOpen(location)
 		}
 	}
 
@@ -35,7 +35,7 @@ class ListView extends Component {
 
 		showingLocations.sort(sortBy('title'))
 
-		let asideClassList;
+		let asideClassList
 		if (this.props.isListViewOpened) {
 			asideClassList = 'open'
 			if (this.props.isListViewAlongside)
@@ -60,7 +60,7 @@ class ListView extends Component {
 							<a className="list-item-link" 
 							   tabIndex="0"
 							   onKeyPress={(event) => this.onKeyPress(event, location)}
-							   onClick={() => this.props.openInfoWindow(location)} >
+							   onClick={() => this.props.onInfoWindowOpen(location)} >
 								{location.title} 
 								{location.elevation ? ' (' + location.elevation + 'm)' : ''}
 							</a>
@@ -72,4 +72,4 @@ class ListView extends Component {
 	}
 }
 
-export default ListView;
+export default ListView

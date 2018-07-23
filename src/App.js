@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import './App.css';
-import ListView from './ListView.js';
-import MainView from './MainView.js';
-import * as locationsData from './data/locations.json';
+import React, { Component } from 'react'
+import './App.css'
+import ListView from './ListView.js'
+import MainView from './MainView.js'
+import * as locationsData from './data/locations.json'
+import * as ElevationAPI from './util/ElevationAPI.js'
+import * as ResponsiveUtil from './util/ResponsiveUtil.js'
 
 class App extends Component {
 
@@ -15,114 +17,22 @@ class App extends Component {
   }
 
   onHamburgerClick = () => {
-    if (this.state.isListViewAlongside) {
-        this.setState({
-          isListViewAlongside: false,
-          isListViewOpened: false
-        })
-    } else {
-      if (window.innerWidth >= 600) {
-        this.setState({
-          isListViewAlongside: true,
-          isListViewOpened: true
-        }) 
-      } else {
-        this.setState({
-          isListViewOpened: true,
-          isMainDarkened: true
-        })  
-      }
-    }
+    ResponsiveUtil.onHamburgerClick(this)
   }
 
   onMainClick = (event) => {
-    if (!this.state.isListViewAlongside) {
-      if (this.state.isListViewOpened) {
-        event.stopPropagation();
-        this.setState({
-          isListViewOpened: false,
-          isMainDarkened: false
-        });
-      }
-    }
+    ResponsiveUtil.onMainClick(event, this)
   }
 
-  setViewStateOnMount = () => {
-    let isListViewAlongside = window.innerWidth >= 600
-      this.setState({
-        isListViewAlongside: isListViewAlongside,
-        isListViewOpened: isListViewAlongside
-    })
-  }
-
-  setViewStateOnResize = () => {
-    window.addEventListener('resize', () => {
-      let isListViewAlongside = window.innerWidth >= 600
-      this.setState({
-        isListViewAlongside: isListViewAlongside,
-        isListViewOpened: isListViewAlongside,
-        isMainDarkened: false
-      })
-    })
-  }
-
-  buildLocationsParam = () => {
-    let param = '';
-    this.state.locations.forEach((location, index) => {
-      param += location.position.lat + ',' + location.position.lng
-      if (index < this.state.locations.length - 1) {
-        param += '|';
-      }
-    })
-    return param;
-  }
-
-  buildRequestURL = () => {
-    let url = new URL("https://maps.googleapis.com/maps/api/elevation/json"),
-    params = {
-      locations: this.buildLocationsParam(), 
-      key: 'AIzaSyCOIb8tce725I3evjOt185ooz0A4UgsK1s'
-    }
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
-    return url;
-  }
-
-  fetchElevationData = () => {
-    fetch(this.buildRequestURL())
-      .then(response => response.json())
-      .then(data => {
-        if (data.results) {
-          this.setState(prevState => ({
-            locations : prevState.locations.map((location, index) => {
-              if (data.results[index] && data.results[index].elevation)
-                location.elevation = Math.round(data.results[index].elevation)
-              return location;
-            })
-          }))
-        }
-      })
-      .catch(error => console.log('Unable to fetch elevation data'))
-  }
-
-  openInfoWindow = (location) => {
-    if (!this.state.isListViewAlongside) {
-      if (this.state.isListViewOpened) {
-        this.setState({
-          isListViewOpened: false,
-          isMainDarkened: false
-        })
-      }
-    }
-
-    this.setState({selectedLocation: location})
+  onInfoWindowOpen = (location) => {
+    ResponsiveUtil.onInfoWindowOpen(location, this)
   }
 
   componentDidMount() {
-
-    this.setViewStateOnMount()
-    this.setViewStateOnResize()
-    this.fetchElevationData()
-  }
+   ResponsiveUtil.setViewStateOnMount(this)
+   ResponsiveUtil.setViewStateOnResize(this)
+   ElevationAPI.fetchElevationData(this)
+ }
 
   render() {
     let className = "App"
@@ -137,7 +47,7 @@ class App extends Component {
           locations={this.state.locations}
           isListViewAlongside={this.state.isListViewAlongside}
           isListViewOpened={this.state.isListViewOpened}
-          openInfoWindow={this.openInfoWindow} />
+          onInfoWindowOpen={this.onInfoWindowOpen} />
      
         <MainView
           locations={this.state.locations}
@@ -145,13 +55,13 @@ class App extends Component {
           isListViewOpened={this.state.isListViewOpened} 
           isMainDarkened={this.state.isMainDarkened} 
           onHamburgerClick={this.onHamburgerClick}
-          openInfoWindow={this.openInfoWindow} 
+          onInfoWindowOpen={this.onInfoWindowOpen} 
           onMainClick={this.onMainClick}
           selectedLocation={this.state.selectedLocation} />
 
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

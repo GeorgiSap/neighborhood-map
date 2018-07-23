@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
-import StreetView from './StreetView.js';
+import React, { Component } from 'react'
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
+import StreetView from './StreetView.js'
 
 class Map extends Component {
 
@@ -8,9 +8,9 @@ class Map extends Component {
 		status: 'OK'
 	}
 
-	openInfoWindow = (location) => {
+	onInfoWindowOpen = (location) => {
 		this.setState({status : 'OK'})
-		this.props.openInfoWindow(location)
+		this.props.onInfoWindowOpen(location)
 	}
 
 	onStatusChanged = (status) => {
@@ -44,7 +44,7 @@ class Map extends Component {
 	  				key={index}
 	  				title={location.title}
 	  				position={location.position}
-	  				onClick={() => this.openInfoWindow(location)}
+	  				onClick={() => this.onInfoWindowOpen(location)}
 	  			>
 	  				{this.props.selectedLocation === location &&
 		  				<InfoWindow>
@@ -80,4 +80,4 @@ class Map extends Component {
 	}
 }
 
-export default withScriptjs(withGoogleMap(Map));
+export default withScriptjs(withGoogleMap(Map))

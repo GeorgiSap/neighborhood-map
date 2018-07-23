@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import './MainView.css';
-import Map from './Map.js';
+import React, { Component } from 'react'
+import './MainView.css'
+import Map from './Map.js'
 
 class MainView extends Component {
 
 	onCloseLinkKeyPress = (event) => {
 		if (event.key === 'Enter') {
-			this.props.onMainClick(event);
+			this.props.onMainClick(event)
 		}
 	}
 
@@ -17,7 +17,7 @@ class MainView extends Component {
 	}
 
 	render() {
-		let mainClassName;
+		let mainClassName
 		let hamburgerClassList="hamburger"
 		if (this.props.isListViewAlongside) 
 			mainClassName = 'alongside'
@@ -40,7 +40,7 @@ class MainView extends Component {
 				</header>
 			    <Map
 			    	locations={this.props.locations}
-			    	openInfoWindow={this.props.openInfoWindow}
+			    	onInfoWindowOpen={this.props.onInfoWindowOpen}
 			    	selectedLocation={this.props.selectedLocation}
 				    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
 			      	containerElement={<div aria-label="location" role="application" style={{height: `calc(100% - 3em)`, width: `100%`, position: `relative`, textAlign: `center` }} />}
@@ -59,4 +59,4 @@ class MainView extends Component {
 	}
 }
 
-export default MainView;
+export default MainView

@@ -4,6 +4,12 @@ import Map from './Map.js';
 
 class MainView extends Component {
 
+	onCloseLinkKeyPress = (event) => {
+		if (event.key === 'Enter') {
+			this.props.onMainClick(event);
+		}
+	}
+
 	render() {
 		let mainClassName;
 		let hamburgerClassList="hamburger"
@@ -21,7 +27,9 @@ class MainView extends Component {
 							aria-label="menu" 
 							onClickCapture={this.props.onHamburgerClick}>☰
 					</button>
-					<h1 className="header-heading"><span className="header-icon">⛰</span> Rila Mountain Sites</h1>
+					<h1 className="header-heading">
+						<span className="header-icon">⛰</span> Rila Mountain Sites
+					</h1>
 				</header>
 			    <Map
 			    	locations={this.props.locations}
@@ -32,6 +40,13 @@ class MainView extends Component {
   					mapElement={<div style={{ position: `absolute`, height: `100%`, width: `100%`}} />}
 			      	loadingElement={<div style={{ height: `100%` }}/>}
 				/>
+				{this.props.isMainDarkened &&
+				<a className="close-menu"
+				   aria-label="close" 
+				   tabIndex="0"
+				   onKeyPress={this.onCloseLinkKeyPress} >
+					×
+				</a>}
 			</main>
 		)
 	}

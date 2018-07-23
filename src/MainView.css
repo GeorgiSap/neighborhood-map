@@ -59,6 +59,22 @@ header {
 	display: none;
 }
 
+.close-menu {
+	position: absolute;
+	top: -2em;
+	right: 0;
+	background: #2e3d49;
+	color: #ece5d7;
+	padding: 0 0.3em;
+	font-size: 2em;
+	font-weight: bold;
+	z-index: 100;
+}
+
+.close-menu:focus {
+	top: 0;
+}
+
 @media screen and (min-width: 360px) and (max-width: 599px), screen and (min-width: 640px) {
 	.header-icon {
 		display: inline;

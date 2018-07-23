@@ -10,6 +10,12 @@ class MainView extends Component {
 		}
 	}
 
+	componentDidUpdate() {
+		if (!this.props.isListViewOpened) {
+			this.refs.main.focus()
+		}
+	}
+
 	render() {
 		let mainClassName;
 		let hamburgerClassList="hamburger"
@@ -21,9 +27,10 @@ class MainView extends Component {
 		}
 
 		return (
-			<main className={mainClassName} onClickCapture={this.props.onMainClick} >
+			<main tabIndex="-1" ref="main" className={mainClassName} onClickCapture={this.props.onMainClick} >
 				<header>
-					<button className={hamburgerClassList}
+					<button 
+							className={hamburgerClassList}
 							aria-label="menu" 
 							onClickCapture={this.props.onHamburgerClick}>☰
 					</button>

@@ -40,7 +40,7 @@ header {
 }
 
 .hidden {
-	display: none;
+	visibility: hidden;
 }
 
 .header-heading {

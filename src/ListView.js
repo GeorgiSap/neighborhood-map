@@ -13,6 +13,10 @@ class ListView extends Component {
 		this.setState({query})
 	}	
 
+	componentDidUpdate() {
+		this.refs.search.focus()
+	}
+
 	render() {
 		let showingLocations
 		if (this.state.query) {
@@ -36,13 +40,13 @@ class ListView extends Component {
 			<aside className={asideClassList}>
 				<div className="search-box"
 					 role="search">
-					<input 
-					 	type="search"
-					 	aria-label="search text" 
-					 	className="search-input"
-					 	placeholder="Search location..."
-					 	value={this.state.query}
-					 	onChange={event => this.updateQuery(event.target.value)} />
+					<input ref="search"
+						   type="search"
+					 	   aria-label="search text" 
+					 	   className="search-input"
+					 	   placeholder="Search location..."
+					 	   value={this.state.query}
+					 	   onChange={event => this.updateQuery(event.target.value)} />
 			 	</div>
 				<ul className="list-view">
 					{showingLocations.map((location, index) => (

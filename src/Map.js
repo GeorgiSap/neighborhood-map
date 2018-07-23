@@ -27,6 +27,10 @@ class Map extends Component {
 	}
 
 	render() {
+		const {locations, selectedLocation} = this.props
+		const {status} = this.state
+		const GOOGLE_MAPS_API_KEY = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'
+
 		return (
 	      	<GoogleMap
 	      		ref='map'
@@ -40,28 +44,28 @@ class Map extends Component {
 			    options={{ mapTypeControl: false }}
 	  		>
 
-	  		{this.props.locations.map((location, index) => (
+	  		{locations.map((location, index) => (
 	  			<Marker
 	  				key={index}
 	  				title={location.title}
 	  				position={location.position}
 	  				onClick={() => this.onInfoWindowOpen(location)}
 	  			>
-	  				{this.props.selectedLocation === location &&
+	  				{selectedLocation === location &&
 		  				<InfoWindow>
 	  						<div>
 			  					<h3>
 			  						{location.title}
 			  						{location.elevation ? ' (' + location.elevation + 'm)' : ''}
 			  					</h3>
-			  					{this.state.status === 'OK' ?
+			  					{status === 'OK' ?
 				  					<div style={{
 			                      		width: '268px',
 			                      		height: '268px',}} >
 			   						
 			   							<StreetView 
 							                onStatusChanged ={this.onStatusChanged}
-							                apiKey={'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'}
+							                apiKey={GOOGLE_MAPS_API_KEY}
 							                streetViewPanoramaOptions={{
 							                  position: location.position,
 							                  pov: {heading: 100, pitch: 0},

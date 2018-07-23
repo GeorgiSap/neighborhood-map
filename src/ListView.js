@@ -25,21 +25,25 @@ class ListView extends Component {
 	}
 
 	render() {
+		const {locations, isListViewOpened, isListViewAlongside, onInfoWindowOpen} = this.props
+		const {query} = this.state
+
+
 		let showingLocations
-		if (this.state.query) {
-			const match = new RegExp(escapeRegExp(this.state.query), 'i')
-			showingLocations = this.props.locations.filter(location => 
+		if (query) {
+			const match = new RegExp(escapeRegExp(query), 'i')
+			showingLocations = locations.filter(location => 
 				match.test(location.title))
 		} else {
-			showingLocations = this.props.locations
+			showingLocations = locations
 		}
 
 		showingLocations.sort(sortBy('title'))
 
 		let asideClassList
-		if (this.props.isListViewOpened) {
+		if (isListViewOpened) {
 			asideClassList = 'open'
-			if (this.props.isListViewAlongside)
+			if (isListViewAlongside)
 				asideClassList += ' alongside'
 		}
 
@@ -52,7 +56,7 @@ class ListView extends Component {
 					 	   aria-label="search text" 
 					 	   className="search-input"
 					 	   placeholder="Search location..."
-					 	   value={this.state.query}
+					 	   value={query}
 					 	   onChange={event => this.updateQuery(event.target.value)} />
 			 	</div>
 				<ul className="list-view">
@@ -61,7 +65,7 @@ class ListView extends Component {
 							<a className="list-item-link" 
 							   tabIndex="0"
 							   onKeyPress={(event) => this.onKeyPress(event, location)}
-							   onClick={() => this.props.onInfoWindowOpen(location)} >
+							   onClick={() => onInfoWindowOpen(location)} >
 								{location.title} 
 								{location.elevation ? ' (' + location.elevation + 'm)' : ''}
 							</a>

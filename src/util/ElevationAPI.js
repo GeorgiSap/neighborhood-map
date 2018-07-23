@@ -1,5 +1,5 @@
 const API_URL = "https://maps.googleapis.com/maps/api/elevation/json"
-const GOOGLE_MAPS_KEY = "AIzaSyCOIb8tce725I3evjOt185ooz0A4UgsK1s"
+const GOOGLE_MAPS_API_KEY = "AIzaSyCOIb8tce725I3evjOt185ooz0A4UgsK1s"
 
 export const fetchElevationData = (app) => {
 	fetch(buildRequestURL(app))
@@ -33,7 +33,7 @@ const buildRequestURL = (app) => {
 	let url = new URL(API_URL),
 	params = {
 		locations: buildLocationsParam(app), 
-		key: GOOGLE_MAPS_KEY
+		key: GOOGLE_MAPS_API_KEY
 	}
 	Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 	return url

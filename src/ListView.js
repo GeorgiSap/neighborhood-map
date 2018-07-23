@@ -10,16 +10,28 @@ class ListView extends Component {
 		query: ''
 	}
 
+   /**
+  	* @description Updates state of search query
+  	* @param {string} query
+  	*/
 	updateQuery = query => {
 		this.setState({query})
 	}	
 
+   /**
+  	* @description Calls onInfoWindowOpen if pressed key is 'Enter'
+  	* @param {object} event
+  	* @param {object} location
+  	*/
 	onKeyPress = (event, location) => {
 		if (event.key === 'Enter') {
 			this.props.onInfoWindowOpen(location)
 		}
 	}
 
+   /**
+  	* @description Sets focus to seatch box
+  	*/
 	componentDidUpdate() {
 		this.refs.search.focus()
 	}
@@ -28,7 +40,7 @@ class ListView extends Component {
 		const {locations, isListViewOpened, isListViewAlongside, onInfoWindowOpen} = this.props
 		const {query} = this.state
 
-
+		/* Filters showing locations based on search query */
 		let showingLocations
 		if (query) {
 			const match = new RegExp(escapeRegExp(query), 'i')
@@ -38,8 +50,10 @@ class ListView extends Component {
 			showingLocations = locations
 		}
 
+		/* Sorts showing locations by title */
 		showingLocations.sort(sortBy('title'))
 
+		/* Generates classList of aside dynamically based on view */
 		let asideClassList
 		if (isListViewOpened) {
 			asideClassList = 'open'

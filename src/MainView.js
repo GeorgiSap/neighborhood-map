@@ -5,12 +5,19 @@ import PropTypes from 'prop-types'
 
 class MainView extends Component {
 
+   /**
+  	* @description Calls onInfoWindowOpen if pressed key is 'Enter'
+  	* @param {object} event
+  	*/
 	onCloseLinkKeyPress = (event) => {
 		if (event.key === 'Enter') {
 			this.props.onMainClick(event)
 		}
 	}
 
+   /**
+  	* @description Sets focus to main if list view is not opened
+  	*/
 	componentDidUpdate() {
 		if (!this.props.isListViewOpened) {
 			this.refs.main.focus()
@@ -21,6 +28,7 @@ class MainView extends Component {
 		const {locations, isListViewAlongside, isMainDarkened, onHamburgerClick, 
 			onInfoWindowOpen, onMainClick, selectedLocation} = this.props
 
+		/* Generates classList of main and hamburger dynamically based on view */
 		let mainClassName
 		let hamburgerClassList="hamburger"
 		if (isListViewAlongside) 
@@ -71,6 +79,7 @@ MainView.propTypes = {
     onHamburgerClick: PropTypes.func.isRequired,
     onInfoWindowOpen: PropTypes.func.isRequired,
     onMainClick: PropTypes.func.isRequired,
+    selectedLocation: PropTypes.object
 }
 
 export default MainView

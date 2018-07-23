@@ -6,18 +6,36 @@ import PropTypes from 'prop-types'
 class Map extends Component {
 
 	state = {
-		status: 'OK'
+		streetViewStatus: 'OK'
 	}
 
-	onInfoWindowOpen = (location) => {
-		this.setState({status : 'OK'})
+   /**
+  	* @description Resets the initial state of streetViewStatus to 'OK'
+  	*/
+	setInitialStreetViewStatus = () => {
+		this.setState({streetViewStatus : 'OK'})
+	}
+
+   /**
+  	* @description Calls setInitialStreetViewStatus and onInfoWindowOpen
+  	* @param {object} location
+  	*/
+	onInfoWindowOpen = location => {
+		this.setInitialStreetViewStatus()
 		this.props.onInfoWindowOpen(location)
 	}
 
-	onStatusChanged = (status) => {
-		this.setState({status})
+   /**
+  	* @description Sets streetViewStatus state on change
+  	* @param {string} streetViewStatus
+  	*/
+	onStatusChanged = streetViewStatus => {
+		this.setState({streetViewStatus})
 	}
 
+   /**
+  	* @description Calculates bounds and fits map
+  	*/
 	componentDidMount () {
 		const bounds = new window.google.maps.LatLngBounds()
 		this.props.locations.forEach((location) => {
@@ -28,7 +46,7 @@ class Map extends Component {
 
 	render() {
 		const {locations, selectedLocation} = this.props
-		const {status} = this.state
+		const {streetViewStatus} = this.state
 		const GOOGLE_MAPS_API_KEY = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'
 
 		return (
@@ -58,7 +76,7 @@ class Map extends Component {
 			  						{location.title}
 			  						{location.elevation ? ' (' + location.elevation + 'm)' : ''}
 			  					</h3>
-			  					{status === 'OK' ?
+			  					{streetViewStatus === 'OK' ?
 				  					<div style={{
 			                      		width: '268px',
 			                      		height: '268px',}} >

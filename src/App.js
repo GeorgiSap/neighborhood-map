@@ -13,35 +13,36 @@ class App extends Component {
     isListViewOpened : false,
     isMainDarkened : false,
     locations : locationsData.locations,
-    selectedLocation : false
+    selectedLocation : null
   }
 
   onHamburgerClick = () => {
     ResponsiveUtil.onHamburgerClick(this)
   }
 
-  onMainClick = (event) => {
+  onMainClick = event => {
     ResponsiveUtil.onMainClick(event, this)
   }
 
-  onInfoWindowOpen = (location) => {
+  onInfoWindowOpen = location => {
     ResponsiveUtil.onInfoWindowOpen(location, this)
   }
 
   componentDidMount() {
-   ResponsiveUtil.setViewStateOnMount(this)
-   ResponsiveUtil.setViewStateOnResize(this)
-   ElevationAPI.fetchElevationData(this)
- }
+    ResponsiveUtil.setViewStateOnMount(this)
+    ResponsiveUtil.setViewStateOnResize(this)
+    ElevationAPI.fetchElevationData(this)
+  }
 
   render() {
-    let className = "App"
+    /* Generates classList of wrapper div dynamically based on view */
+    let wrapperClassList = 'App'
     if (this.state.isListViewAlongside) {
-      className += ' alongside'
+      wrapperClassList += ' alongside'
     }
 
     return (
-      <div className={className} >
+      <div className={wrapperClassList} >
        
         <ListView 
           locations={this.state.locations}

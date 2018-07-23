@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './ListView.css'
 import escapeRegExp from 'escape-string-regexp'
 import sortBy from 'sort-by'
+import PropTypes from 'prop-types'
 
 class ListView extends Component {
 
@@ -70,6 +71,13 @@ class ListView extends Component {
 			</aside>
 		)
 	}
+}
+
+ListView.propTypes = {
+	locations: PropTypes.array.isRequired,
+    isListViewAlongside: PropTypes.bool.isRequired,
+    isListViewOpened: PropTypes.bool.isRequired,
+    onInfoWindowOpen: PropTypes.func.isRequired
 }
 
 export default ListView

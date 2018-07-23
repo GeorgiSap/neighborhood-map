@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 import StreetView from './StreetView.js'
+import PropTypes from 'prop-types'
 
 class Map extends Component {
 
@@ -78,6 +79,11 @@ class Map extends Component {
 	  		</GoogleMap>
 		)
 	}
+}
+
+Map.propTypes = {
+	locations: PropTypes.array.isRequired,
+    onInfoWindowOpen: PropTypes.func.isRequired
 }
 
 export default withScriptjs(withGoogleMap(Map))

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './MainView.css'
 import Map from './Map.js'
+import PropTypes from 'prop-types'
 
 class MainView extends Component {
 
@@ -57,6 +58,16 @@ class MainView extends Component {
 			</main>
 		)
 	}
+}
+
+MainView.propTypes = {
+	locations: PropTypes.array.isRequired,
+    isListViewAlongside: PropTypes.bool.isRequired,
+    isListViewOpened: PropTypes.bool.isRequired,
+    isMainDarkened: PropTypes.bool.isRequired,
+    onHamburgerClick: PropTypes.func.isRequired,
+    onInfoWindowOpen: PropTypes.func.isRequired,
+    onMainClick: PropTypes.func.isRequired,
 }
 
 export default MainView

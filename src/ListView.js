@@ -16,11 +16,11 @@ class ListView extends Component {
 	}
 
    /**
-  	* @description Sets focus to seatch box if no location selected
+  	* @description Sets focus to list view if no location selected
   	*/
 	componentDidUpdate() {
 		if (!this.props.selectedLocation)
-			this.refs.search.focus()
+			this.refs.aside.focus()
 	}
 
 	render() {
@@ -35,11 +35,9 @@ class ListView extends Component {
 		}
 
 		return (
-			<aside className={asideClassList}>
-				<div className="search-box"
-					 role="search">
-					<input ref="search"
-						   type="search"
+			<aside ref="aside" tabindex="-1" className={asideClassList}>
+				<div className="search-box" role="search">
+					<input type="search"
 					 	   aria-label="search text" 
 					 	   className="search-input"
 					 	   placeholder="Search location..."

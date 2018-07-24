@@ -16,7 +16,8 @@ class App extends Component {
     isMainDarkened : false,
     locations : locationsData.locations,
     selectedLocation : null,
-    query : ''
+    query : '',
+    hasError: false
   }
 
 /**
@@ -25,6 +26,10 @@ class App extends Component {
   */
   updateQuery = query => {
     this.setState({query})
+  }
+
+  onError = (error, info) => {
+    this.setState({hasError: true})
   }
 
   unselectLocation = ()=> {
@@ -47,6 +52,10 @@ class App extends Component {
     ResponsiveUtil.setViewStateOnMount(this)
     ResponsiveUtil.setViewStateOnResize(this)
     ElevationAPI.fetchElevationData(this)
+  }
+
+  componentDidCatch(error, info) {
+    this.setState({hasError: true}) 
   }
 
   render() {
@@ -92,7 +101,9 @@ class App extends Component {
           onInfoWindowOpen={this.onInfoWindowOpen} 
           onMainClick={this.onMainClick}
           selectedLocation={this.state.selectedLocation}
-          unselectLocation={this.unselectLocation} />
+          unselectLocation={this.unselectLocation}
+          onError={this.onError}
+          hasError={this.state.hasError} />
 
       </div>
     )

@@ -5,12 +5,8 @@ import nointernet from './img/nointernet.png'
 
 class MapContainer extends Component {
 
-	state = {
-		hasError: false
-	}
-
 	componentDidCatch(error, info) {
-		this.setState({hasError: true}) 
+		this.props.onError()
 	}
 
 	render() {
@@ -18,7 +14,7 @@ class MapContainer extends Component {
 		const GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKNp06ztya3-x0j2-LkXrgiePek-yv1Qw&v=3.exp&libraries=geometry,drawing,places'
 		
 		return (
-			!this.state.hasError ? 
+			!this.props.hasError ? 
 			    <Map
 			    	locations={locations}
 			    	onInfoWindowOpen={onInfoWindowOpen}

@@ -57,6 +57,8 @@ class MainView extends Component {
 			    	onInfoWindowOpen={onInfoWindowOpen}
 			    	selectedLocation={selectedLocation}
 			    	unselectLocation={unselectLocation}
+			    	onError={this.props.onError}
+			    	hasError={this.props.hasError}
 				/>
 				{isMainDarkened &&
 				<a className="close-menu"

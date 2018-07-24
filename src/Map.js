@@ -36,18 +36,20 @@ class Map extends Component {
    /**
   	* @description Calculates bounds and fits map
   	*/
-	componentDidMount () {
-		const bounds = new window.google.maps.LatLngBounds()
-		this.props.locations.forEach((location) => {
-			bounds.extend(location.position)
-		})
-		this.refs.map.fitBounds(bounds)
-	}
+  	componentDidMount () {
+  		if (window.google) {
+  			const bounds = new window.google.maps.LatLngBounds()
+  			this.props.locations.forEach((location) => {
+  				bounds.extend(location.position)
+  			})
+  			this.refs.map.fitBounds(bounds)
+  		}
+  	}
 
 	render() {
 		const {locations, selectedLocation} = this.props
 		const {streetViewStatus} = this.state
-		const GOOGLE_MAPS_API_KEY = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places'
+		const GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKNp06ztya3-x0j2-LkXrgiePek-yv1Qw&v=3.exp&libraries=geometry,drawing,places'
 
 		return (
 	      	<GoogleMap
@@ -67,7 +69,7 @@ class Map extends Component {
 	  				key={index}
 	  				title={location.title}
 	  				position={location.position}
-	  				animation={(selectedLocation === location) && 
+	  				animation={(selectedLocation === location) && window.google &&
 	  					window.google.maps.Animation.BOUNCE}
 	  				onClick={() => this.onInfoWindowOpen(location)} >
 	  				{selectedLocation === location &&
@@ -84,7 +86,7 @@ class Map extends Component {
 			   						
 			   							<StreetView 
 							                onStatusChanged ={this.onStatusChanged}
-							                apiKey={GOOGLE_MAPS_API_KEY}
+							                apiKey={GOOGLE_MAPS_API_URL}
 							                streetViewPanoramaOptions={{
 							                  position: location.position,
 							                  pov: {heading: 100, pitch: 0},

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './MainView.css'
-import Map from './Map.js'
+import MapContainer from './MapContainer.js'
 import PropTypes from 'prop-types'
 
 class MainView extends Component {
@@ -24,9 +24,11 @@ class MainView extends Component {
 		}
 	}
 
+
+
 	render() {
 		const {locations, isListViewAlongside, isMainDarkened, onHamburgerClick, 
-			onInfoWindowOpen, onMainClick, selectedLocation} = this.props
+			onInfoWindowOpen, onMainClick, selectedLocation, unselectLocation} = this.props
 
 		/* Generates classList of main and hamburger dynamically based on view */
 		let mainClassName
@@ -50,15 +52,11 @@ class MainView extends Component {
 						<span className="header-icon">⛰</span> Rila Mountain Sites
 					</h1>
 				</header>
-			    <Map
+				<MapContainer 
 			    	locations={locations}
 			    	onInfoWindowOpen={onInfoWindowOpen}
 			    	selectedLocation={selectedLocation}
-			    	unselectLocation={this.props.unselectLocation}
-				    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places"
-			      	containerElement={<div aria-label="location" role="application" style={{height: `calc(100% - 3em)`, width: `100%`, position: `relative`, textAlign: `center` }} />}
-  					mapElement={<div style={{ position: `absolute`, height: `100%`, width: `100%`}} />}
-			      	loadingElement={<div style={{ height: `100%` }}/>}
+			    	unselectLocation={unselectLocation}
 				/>
 				{isMainDarkened &&
 				<a className="close-menu"
@@ -80,6 +78,7 @@ MainView.propTypes = {
     onHamburgerClick: PropTypes.func.isRequired,
     onInfoWindowOpen: PropTypes.func.isRequired,
     onMainClick: PropTypes.func.isRequired,
+    unselectLocation: PropTypes.func.isRequired,
     selectedLocation: PropTypes.object
 }
 

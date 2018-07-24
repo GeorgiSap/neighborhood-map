@@ -23,6 +23,7 @@ main.alongside {
 }
 
 header {
+	position: relative;	
 	background-color: #ffefdb;
 	height: 3em;
 	width: 	100%;

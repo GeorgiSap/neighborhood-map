@@ -1,12 +1,11 @@
-const API_URL = "https://maps.googleapis.com/maps/api/elevation/json"
-const GOOGLE_MAPS_API_KEY = "AIzaSyCOIb8tce725I3evjOt185ooz0A4UgsK1s"
+const API_URL = "https://api.open-elevation.com/api/v1/lookup"
 
 /**
- * @description Fetches data from Elevation API and sets elevation property of locations
+ * @description Fetches data from api and sets elevation property of locations
  * @param {Component} App component
  */
  export const fetchElevationData = (app) => {
-	 fetch(buildRequestURL(app))
+	 fetch( buildRequestURL(app))
 	 .then(response => response.json())
 	 .then(data => {
 		 if (data.results) {
@@ -30,8 +29,7 @@ const GOOGLE_MAPS_API_KEY = "AIzaSyCOIb8tce725I3evjOt185ooz0A4UgsK1s"
  const buildRequestURL = (app) => {
 	 let url = new URL(API_URL),
 	 params = {
-		 locations: buildLocationsParam(app), 
-		 key: GOOGLE_MAPS_API_KEY
+		 locations: buildLocationsParam(app) 
 	 }
 	 Object.keys(params).forEach(key => url.searchParams.append(key, params[key]))
 	 return url

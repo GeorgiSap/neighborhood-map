@@ -16,10 +16,11 @@ class ListView extends Component {
 	}
 
    /**
-  	* @description Sets focus to seatch box
+  	* @description Sets focus to seatch box if no location selected
   	*/
 	componentDidUpdate() {
-		this.refs.search.focus()
+		if (!this.props.selectedLocation)
+			this.refs.search.focus()
 	}
 
 	render() {

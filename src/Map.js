@@ -70,7 +70,7 @@ class Map extends Component {
 	  				onClick={() => this.onInfoWindowOpen(location)}
 	  			>
 	  				{selectedLocation === location &&
-		  				<InfoWindow>
+		  				<InfoWindow onCloseClick={this.props.unselectLocation}>
 	  						<div>
 			  					<h3>
 			  						{location.title}

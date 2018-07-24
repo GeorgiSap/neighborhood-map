@@ -27,6 +27,10 @@ class App extends Component {
     this.setState({query})
   }
 
+  unselectLocation = ()=> {
+    this.setState({selectedLocation: null})
+  }
+
   onHamburgerClick = () => {
     ResponsiveUtil.onHamburgerClick(this)
   }
@@ -75,6 +79,7 @@ class App extends Component {
           isListViewAlongside={this.state.isListViewAlongside}
           isListViewOpened={this.state.isListViewOpened}
           onInfoWindowOpen={this.onInfoWindowOpen}
+          selectedLocation={this.state.selectedLocation}
           updateQuery={this.updateQuery}
           query={this.state.query} />
      
@@ -86,7 +91,8 @@ class App extends Component {
           onHamburgerClick={this.onHamburgerClick}
           onInfoWindowOpen={this.onInfoWindowOpen} 
           onMainClick={this.onMainClick}
-          selectedLocation={this.state.selectedLocation} />
+          selectedLocation={this.state.selectedLocation}
+          unselectLocation={this.unselectLocation} />
 
       </div>
     )

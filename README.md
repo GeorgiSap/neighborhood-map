@@ -11,6 +11,7 @@
 - [Resources](#resources)
   * [Dependencies](#dependencies)
   * [Third party APIs](#third-party-apis)
+  * [Images](#images)
   * [Fonts](#fonts)
 
 ### Getting started
@@ -47,9 +48,15 @@
 
 * [sort-by](https://github.com/kvnneff/sort-by)
 
+* [gh-pages](https://github.com/tschaub/gh-pages)
+
 #### Third Party APIs
 
 * [open-elevation](https://github.com/Jorl17/open-elevation)
+
+#### Images
+
+* [No-Internet-Connection](https://dribbble.com/shots/2758771-No-Internet-Connection)
 
 #### Fonts
 

@@ -1,22 +1,8 @@
 import React, { Component } from 'react'
 import './ListView.css'
-import escapeRegExp from 'escape-string-regexp'
-import sortBy from 'sort-by'
 import PropTypes from 'prop-types'
 
 class ListView extends Component {
-
-	state = {
-		query: ''
-	}
-
-   /**
-  	* @description Updates state of search query
-  	* @param {string} query
-  	*/
-	updateQuery = query => {
-		this.setState({query})
-	}	
 
    /**
   	* @description Calls onInfoWindowOpen if pressed key is 'Enter'
@@ -37,21 +23,7 @@ class ListView extends Component {
 	}
 
 	render() {
-		const {locations, isListViewOpened, isListViewAlongside, onInfoWindowOpen} = this.props
-		const {query} = this.state
-
-		/* Filters showing locations based on search query */
-		let showingLocations
-		if (query) {
-			const match = new RegExp(escapeRegExp(query), 'i')
-			showingLocations = locations.filter(location => 
-				match.test(location.title))
-		} else {
-			showingLocations = locations
-		}
-
-		/* Sorts showing locations by title */
-		showingLocations.sort(sortBy('title'))
+		const {locations, query, isListViewOpened, isListViewAlongside, onInfoWindowOpen} = this.props
 
 		/* Generates classList of aside dynamically based on view */
 		let asideClassList
@@ -71,10 +43,10 @@ class ListView extends Component {
 					 	   className="search-input"
 					 	   placeholder="Search location..."
 					 	   value={query}
-					 	   onChange={event => this.updateQuery(event.target.value)} />
+					 	   onChange={event => this.props.updateQuery(event.target.value)} />
 			 	</div>
 				<ul className="list-view">
-					{showingLocations.map((location, index) => (
+					{locations.map((location, index) => (
 						<li className="list-item" key={index} >
 							<a className="list-item-link" 
 							   tabIndex="0"

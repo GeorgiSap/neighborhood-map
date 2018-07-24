@@ -1,4 +1,5 @@
-const API_URL = "https://api.open-elevation.com/api/v1/lookup"
+// const API_URL = "https://api.open-elevation.com/api/v1/lookup"
+const API_URL = "https://api.open-belevation.com/api/v1/lookup"
 
 /**
  * @description Fetches data from api and sets elevation property of locations

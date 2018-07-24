@@ -47,7 +47,8 @@
       } else {
         app.setState({
           isListViewOpened: true,
-          isMainDarkened: true
+          isMainDarkened: true,
+          selectedLocation: null
         })  
       }
     }

@@ -67,8 +67,9 @@ class Map extends Component {
 	  				key={index}
 	  				title={location.title}
 	  				position={location.position}
-	  				onClick={() => this.onInfoWindowOpen(location)}
-	  			>
+	  				animation={(selectedLocation === location) && 
+	  					window.google.maps.Animation.BOUNCE}
+	  				onClick={() => this.onInfoWindowOpen(location)} >
 	  				{selectedLocation === location &&
 		  				<InfoWindow onCloseClick={this.props.unselectLocation}>
 	  						<div>

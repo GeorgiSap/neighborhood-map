@@ -32,6 +32,10 @@
 
 ![Desktop](https://user-images.githubusercontent.com/21098450/43114956-30ab8a20-8f0a-11e8-9f11-85c4b393dd3b.PNG)
 
+#### Offline
+
+![Offline](https://user-images.githubusercontent.com/21098450/43167982-3e158cf2-8fa4-11e8-9c28-7ab6cdab9c4b.PNG)
+
 ### Resources
 
 #### Dependencies

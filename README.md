@@ -8,6 +8,7 @@
 - [Screenshots](#screenshots)
   * [Mobile](#mobile)
   * [Desktop](#desktop)
+  * [Offline](#offline)
 - [Resources](#resources)
   * [Dependencies](#dependencies)
   * [Third party APIs](#third-party-apis)

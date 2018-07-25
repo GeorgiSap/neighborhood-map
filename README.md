@@ -8,7 +8,9 @@
 - [Screenshots](#screenshots)
   * [Mobile](#mobile)
   * [Desktop](#desktop)
-  * [Offline](#offline)
+  * [Offline First](#offline-first)
+  	+ [No Internet Connection](#no-internet-connection)
+  	+ [No Connection to Third Patry API](#no-connection-to-third-patry-api)
 - [Resources](#resources)
   * [Dependencies](#dependencies)
   * [Third party APIs](#third-party-apis)
@@ -33,9 +35,15 @@
 
 ![Desktop](https://user-images.githubusercontent.com/21098450/43114956-30ab8a20-8f0a-11e8-9f11-85c4b393dd3b.PNG)
 
-#### Offline
+#### Offline First
 
-![Offline](https://user-images.githubusercontent.com/21098450/43167982-3e158cf2-8fa4-11e8-9c28-7ab6cdab9c4b.PNG)
+##### No Internet Connection
+
+![No Internet Connection](https://user-images.githubusercontent.com/21098450/43167982-3e158cf2-8fa4-11e8-9c28-7ab6cdab9c4b.PNG)
+
+##### No Connection to Third Patry API 
+
+![Cannot Connect to Third Patry API](https://user-images.githubusercontent.com/21098450/43228469-4a0ecab6-906a-11e8-88c4-b1859424f941.PNG)
 
 ### Resources
 
@@ -54,6 +62,8 @@
 * [sort-by](https://github.com/kvnneff/sort-by)
 
 * [gh-pages](https://github.com/tschaub/gh-pages)
+
+* [react-modal](https://github.com/reactjs/react-modal)
 
 #### Third Party APIs
 

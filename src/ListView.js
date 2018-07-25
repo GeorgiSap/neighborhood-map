@@ -24,7 +24,8 @@ class ListView extends Component {
 	}
 
 	render() {
-		const {locations, query, isListViewOpened, isListViewAlongside, onInfoWindowOpen} = this.props
+		const {locations, query, updateQuery, isListViewOpened, isListViewAlongside, 
+			onInfoWindowOpen} = this.props
 
 		/* Generates classList of aside dynamically based on view */
 		let asideClassList
@@ -42,7 +43,7 @@ class ListView extends Component {
 					 	   className="search-input"
 					 	   placeholder="Search location..."
 					 	   value={query}
-					 	   onChange={event => this.props.updateQuery(event.target.value)} />
+					 	   onChange={event => updateQuery(event.target.value)} />
 			 	</div>
 				<ul className="list-view">
 					{locations.map((location, index) => (
@@ -66,7 +67,9 @@ ListView.propTypes = {
 	locations: PropTypes.array.isRequired,
     isListViewAlongside: PropTypes.bool.isRequired,
     isListViewOpened: PropTypes.bool.isRequired,
-    onInfoWindowOpen: PropTypes.func.isRequired
+    onInfoWindowOpen: PropTypes.func.isRequired,
+    query: PropTypes.string.isRequired,
+    updateQuery: PropTypes.func.isRequired
 }
 
 export default ListView

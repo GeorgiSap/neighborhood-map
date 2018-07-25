@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './MainView.css'
 import MapContainer from './MapContainer.js'
 import PropTypes from 'prop-types'
+import ReactModal from 'react-modal'
+import mountainClimbing from './img/mountain-climbing.JPG'
 
 class MainView extends Component {
 
@@ -24,11 +26,25 @@ class MainView extends Component {
 		}
 	}
 
-
-
 	render() {
 		const {locations, isListViewAlongside, isMainDarkened, onHamburgerClick, 
-			onInfoWindowOpen, onMainClick, selectedLocation, unselectLocation} = this.props
+			onInfoWindowOpen, onMainClick, selectedLocation, unselectLocation,
+			showModal, closeModal, hasError, onError} = this.props
+
+	    const modalStyles = {
+	      content : {
+	        top: `50%`,
+	        left: `50%`,
+	        right: `auto`,
+	        bottom: `auto`,
+	        marginRight: `-50%`,
+	        transform: `translate(-50%, -50%)`,
+	        opacity: 1,
+	        zIndex: 10,
+	        padding: `10px`
+	      },
+	      overlay: {zIndex: 5, background: `rgba(54, 54, 54, 0.3)`}
+	    }
 
 		/* Generates classList of main and hamburger dynamically based on view */
 		let mainClassName
@@ -57,8 +73,8 @@ class MainView extends Component {
 			    	onInfoWindowOpen={onInfoWindowOpen}
 			    	selectedLocation={selectedLocation}
 			    	unselectLocation={unselectLocation}
-			    	onError={this.props.onError}
-			    	hasError={this.props.hasError}
+			    	onError={onError}
+			    	hasError={hasError}
 				/>
 				{isMainDarkened &&
 				<a className="close-menu"
@@ -67,6 +83,31 @@ class MainView extends Component {
 				   onKeyPress={this.onCloseLinkKeyPress} >
 					×
 				</a>}
+
+				{showModal && !hasError && (
+					<ReactModal appElement={document.getElementById('root')}
+								isOpen={showModal}	
+								style={modalStyles}
+								contentLabel="Modal" >
+						<div className="modal-container">
+							<figure className="modal-figure">
+								<img className="modal-img" 
+									 src={mountainClimbing} 
+									 alt="mountain climbing"/>
+								<figcaption className="modal-caption">
+									Can't fetch elevation data.
+								</figcaption>
+							</figure>
+							<div className="modal-label">
+								???? m
+							</div>
+						</div>
+						<button className="modal-button" onClick={closeModal}>
+							EXPLORE OTHER FEATURES
+						</button>
+					</ReactModal>
+				)}
+
 			</main>
 		)
 	}
@@ -81,6 +122,10 @@ MainView.propTypes = {
     onInfoWindowOpen: PropTypes.func.isRequired,
     onMainClick: PropTypes.func.isRequired,
     unselectLocation: PropTypes.func.isRequired,
+  	hasError: PropTypes.bool.isRequired,
+  	showModal: PropTypes.bool.isRequired,
+    onError: PropTypes.func.isRequired,
+  	closeModal: PropTypes.func.isRequired,
     selectedLocation: PropTypes.object
 }
 

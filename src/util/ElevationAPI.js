@@ -18,7 +18,7 @@ const API_URL = "https://api.open-elevation.com/api/v1/lookup"
 			 }))
 		 }
 	 })
-	 .catch(error => console.log('Unable to fetch elevation data'))
+	 .catch(error => app.setState({showModal: true}))
  }
 
 /**

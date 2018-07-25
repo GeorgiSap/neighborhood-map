@@ -80,6 +80,56 @@ header {
 	top: 0;
 }
 
+.modal-label {
+	position: absolute;
+	width: 150px;
+	height: 60px;
+	top: 15px;
+	left: 12.5px;
+	text-align: center;
+	font-size: 1.5em;
+	font-family: Arial;
+}
+
+.modal-button {
+	display: block;
+	margin: auto;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.8em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    background-color: #008CBA;
+}
+
+.modal-button:focus {
+	outline: 1px solid red;
+}
+
+.modal-img {
+	margin: auto;
+	display: block;
+	max-height: 100%;
+	max-width: 100%;
+}
+
+.modal-figure {
+	margin: 0; 
+	padding: 0;
+}
+
+.modal-caption {
+	text-align: center; 
+	margin: 0.55em; 
+	font-size: 1.2em;
+}
+
+.modal-container {
+	position: relative;
+}
+
 @media screen and (min-width: 360px) and (max-width: 599px), screen and (min-width: 640px) {
 	.header-icon {
 		display: inline;

@@ -17,7 +17,8 @@ class App extends Component {
     locations : locationsData.locations,
     selectedLocation : null,
     query : '',
-    hasError: false
+    hasError: false,
+    showModal: false
   }
 
 /**
@@ -30,6 +31,10 @@ class App extends Component {
 
   onError = (error, info) => {
     this.setState({hasError: true})
+  }
+  
+  closeModal = () => {
+    this.setState({showModal: false});
   }
 
   unselectLocation = ()=> {
@@ -59,7 +64,8 @@ class App extends Component {
   }
 
   render() {
-    const {locations, query} = this.state
+    const {locations, query, isListViewAlongside, isListViewOpened, 
+      isMainDarkened, selectedLocation, hasError, showModal} = this.state
 
     /* Filters showing locations based on search query */
     let filteredLocations
@@ -85,25 +91,27 @@ class App extends Component {
        
         <ListView 
           locations={filteredLocations}
-          isListViewAlongside={this.state.isListViewAlongside}
-          isListViewOpened={this.state.isListViewOpened}
+          isListViewAlongside={isListViewAlongside}
           onInfoWindowOpen={this.onInfoWindowOpen}
-          selectedLocation={this.state.selectedLocation}
+          isListViewOpened={isListViewOpened}
+          selectedLocation={selectedLocation}
           updateQuery={this.updateQuery}
-          query={this.state.query} />
+          query={query} />
      
         <MainView
           locations={filteredLocations}
-          isListViewAlongside={this.state.isListViewAlongside}
-          isListViewOpened={this.state.isListViewOpened} 
-          isMainDarkened={this.state.isMainDarkened} 
+          isListViewAlongside={isListViewAlongside}
+          isListViewOpened={isListViewOpened} 
+          isMainDarkened={isMainDarkened} 
           onHamburgerClick={this.onHamburgerClick}
           onInfoWindowOpen={this.onInfoWindowOpen} 
           onMainClick={this.onMainClick}
           selectedLocation={this.state.selectedLocation}
           unselectLocation={this.unselectLocation}
+          closeModal={this.closeModal} 
+          showModal={showModal}
           onError={this.onError}
-          hasError={this.state.hasError} />
+          hasError={hasError} />
 
       </div>
     )

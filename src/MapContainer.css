@@ -1,0 +1,27 @@
+.error-container {
+	height: calc(100% - 3em);
+	width: 100%;
+	position: relative;
+	text-align: center;
+}
+
+.error-div {
+	vertical-align: middle;
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+.error-img {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	object-fit: cover;
+	vertical-align: middle;
+	margin: 0 auto;
+	display: inline;
+	width: 261px;
+	height: 300px;
+	max-width: 100%;
+	max-height: 100%;
+}

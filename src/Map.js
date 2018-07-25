@@ -47,7 +47,7 @@ class Map extends Component {
   	}
 
 	render() {
-		const {locations, selectedLocation} = this.props
+		const {locations, selectedLocation, unselectLocation} = this.props
 		const {streetViewStatus} = this.state
 		const GOOGLE_MAPS_API_URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyDKNp06ztya3-x0j2-LkXrgiePek-yv1Qw&v=3.exp&libraries=geometry,drawing,places'
 
@@ -73,7 +73,7 @@ class Map extends Component {
 	  					window.google.maps.Animation.BOUNCE}
 	  				onClick={() => this.onInfoWindowOpen(location)} >
 	  				{selectedLocation === location &&
-		  				<InfoWindow onCloseClick={this.props.unselectLocation}>
+		  				<InfoWindow onCloseClick={unselectLocation}>
 	  						<div>
 			  					<h3>
 			  						{location.title}
@@ -108,7 +108,8 @@ class Map extends Component {
 
 Map.propTypes = {
 	locations: PropTypes.array.isRequired,
-    onInfoWindowOpen: PropTypes.func.isRequired
+    onInfoWindowOpen: PropTypes.func.isRequired,
+    unselectLocation: PropTypes.func.isRequired
 }
 
 export default withScriptjs(withGoogleMap(Map))

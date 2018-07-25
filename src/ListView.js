@@ -36,7 +36,7 @@ class ListView extends Component {
 		}
 
 		return (
-			<aside ref="aside" tabindex="-1" className={asideClassList}>
+			<aside ref="aside" tabIndex="-1" className={asideClassList}>
 				<div className="search-box" role="search">
 					<input type="search"
 					 	   aria-label="search text" 

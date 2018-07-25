@@ -5,6 +5,7 @@
 ### Table of contents
 
 - [Getting started](#getting-started)
+- [Demo](#demo)
 - [Screenshots](#screenshots)
   * [Mobile](#mobile)
   * [Desktop](#desktop)
@@ -14,14 +15,33 @@
 - [Resources](#resources)
   * [Dependencies](#dependencies)
   * [Third party APIs](#third-party-apis)
-  * [Images](#images)
-  * [Fonts](#fonts)
+  * [Art](#art)
+	+ [Images](#images)
+	+ [Fonts](#fonts)
 
 ### Getting started
 
-* Run ```npm install``` to install dependencies.
-* Run ```npm start``` to launch app.
-* Visit the app: `http://localhost:3000`
+1. Run ```npm install``` to install dependencies.
+
++ If you don't want to enable offline-first features, skip to step 4. [Learn more](#learn-more)
+
+2. Run  ```npm run-script build``` to create production build.
+
+3. In the project root directory, navigate to the generated ```/build``` folder.
+
+4. Run ```npm start``` to launch app.
+
+5. Visit the app: `http://localhost:3000`
+
+##### Learn more
+
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+By default, the production build is a fully functional, offline-first 
+[Progressive Web App](https://developers.google.com/web/progressive-web-apps/).
+
+### [Demo](https://georgisap.github.io/neighborhood-map/)
+
+This demo was published on [GitHub Pages](https://pages.github.com/) using [gh-pages](https://github.com/tschaub/gh-pages)
 
 ### Screenshots
 
@@ -69,10 +89,14 @@
 
 * [open-elevation](https://github.com/Jorl17/open-elevation)
 
-#### Images
+#### Art
+
+##### Images
 
 * [No-Internet-Connection](https://dribbble.com/shots/2758771-No-Internet-Connection)
 
-#### Fonts
+* [No-Connection-to-Third-Party-API](http://getdrawings.com/mountain-climbing-drawing#mountain-climbing-drawing-34.JPG)
+
+##### Fonts
 
 * [Lobster](https://fonts.google.com/specimen/Lobster) 
